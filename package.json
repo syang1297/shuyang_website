@@ -1,21 +1,35 @@
 {
   "name": "syang_website",
-  "author": "Shu Yang",
-  "description": "A personal website portfolio to showcase experiences",
   "version": "0.1.0",
-  "private": false,
-  "license": "none",
+  "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.14",
+    "react-cookie": "^4.0.1",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0"
   },
   "scripts": {
-    "start": "webpack-dev-server index.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "web-cli": "^1.0.0-prealpha",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
