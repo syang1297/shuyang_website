@@ -1,0 +1,21 @@
+{
+  "name": "syang_website",
+  "author": "Shu Yang",
+  "description": "A personal website portfolio to showcase experiences",
+  "version": "0.1.0",
+  "private": false,
+  "license": "none",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.3.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server index.js"
+  },
+  "devDependencies": {
+    "web-cli": "^1.0.0-prealpha",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
