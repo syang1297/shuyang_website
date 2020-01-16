@@ -4,6 +4,9 @@ import { BrowserRouter, Route} from "react-router-dom";
 import NavBar from './components/navbar';
 import Home from './components/home';
 
+
+import Map from './components/map';
+
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
@@ -13,6 +16,7 @@ function App() {
         <div>
           <NavBar/>
           <Route exact path="/" component={Home} />
+          <Route exact path="/map" component={Map}/>
         </div>
       </BrowserRouter>
     </div>

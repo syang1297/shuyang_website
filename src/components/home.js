@@ -8,8 +8,8 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-          <img src={profPic} width="200" height="200" alt="Picture of Shu"/>
+        <img src={profPic} width="200" height="200" alt="Pic of Shu"/>
       </div>
     )
   }
-}
+} 
