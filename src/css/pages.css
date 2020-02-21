@@ -43,3 +43,19 @@
 .accountsArea{
     padding-top:5%
 }
+
+.bordered{
+    border: 1px solid #333;
+    text-align: center;
+    min-height: 50px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.nav{
+    margin-left: 90%
+}
+
+.nav1{
+    margin-left: 70%
+}

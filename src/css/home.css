@@ -1,0 +1,13 @@
+#background-video{
+
+    height: 1000%;
+    width: 1000%;
+    float: left;
+    top: 0;
+    padding: none;
+    position: fixed; /* optional depending on what you want to do in your app */
+}
+
+#foreground-box{
+    position: relative;
+}

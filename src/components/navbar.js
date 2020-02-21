@@ -3,7 +3,7 @@ import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 
 import "../css/navbar.css"
 
-const dropDownIcon = require('../dropdown.png');
+const dropDownIcon = require('../data/dropdown.png');
 
 
 export default class NavBar extends React.Component {
@@ -16,13 +16,12 @@ export default class NavBar extends React.Component {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"></Navbar.Toggle>
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-            <Nav className="mr-auto">
-                <NavDropdown src={dropDownIcon}  width="200" height = "200" id="collasible-nav-dropdown" className="">
+                <NavDropdown src={dropDownIcon}  fixed="right" width="200" height = "200" id="collasible-nav-dropdown" class="dropdown-menu" right="0" left= "auto">
                     <NavDropdown.Item href="/about">About</NavDropdown.Item>
-                    <NavDropdown.Item href="/resume">Resume</NavDropdown.Item>
                     <NavDropdown.Item href="/projects">Projects</NavDropdown.Item>
+                    <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
+
                 </NavDropdown>
-            </Nav>
           </Navbar.Collapse>
         </Navbar>
       </div>

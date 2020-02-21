@@ -1,13 +1,13 @@
+/*global google*/
 import React, { Component } from 'react'
 import { Button } from 'reactstrap';
-// import 'bulma/bulma';
-
+import { Map, GoogleApiWrapper, Marker, InfoWindow, MarkerWithLabel} from 'google-maps-react';
+import "bootstrap/dist/css/bootstrap.css";
+import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 import '../css/pages.css';
-import { Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react';
+import '../css/google_map_infobox.css';
 
-// import * as eggData from "../data/eggchair.json";
-
-export class MapContainer extends Component {
+export class MapContainer extends Component { 
   constructor(props){
     super(props);
     this.state = {
@@ -15,7 +15,62 @@ export class MapContainer extends Component {
       traffic : {},
       transit : {},
       bicycling : {},
-      list: ["Annex", "Egg Chair"]
+      list: ["Annex", "Egg Chair"],
+      // shownMarkers:[],
+      // hiddenMarkers:[]
+      eggMarkers:[
+        {
+          "onClick": "this.onMarkerClick",
+          "icon": '{"eggIcon"}',
+          "title": "Egg Chair: UCSB Library Mountainside",
+          "position": '{"lat": "34.41300", "lng": "-119.8489"}'
+        },
+        {
+          "onClick": "this.onMarkerClick",
+          "icon": '{"eggIcon"}',
+          "title": "Egg Chair: CAPS",
+          "position": '{"lat": "34.413000", "lng": "-119.845689"}'
+        },
+        {
+          "onClick": "this.onMarkerClick",
+          "icon": '{"eggIcon"}',
+          "title": "Egg Chair: UCSB Library Oceanside",
+          "position": '{"lat": "34.414297", "lng": "-119.845546"}'
+        },
+        {
+          "onClick": "this.onMarkerClick",
+          "icon": '{"eggIcon"}',
+          "title": "Egg Chair: GSA Lounge",
+          "position": '{"lat": "34.411469", "lng": "-119.846670"}'
+        },
+        {
+          "onClick": "this.onMarkerClick",
+          "icon": '{"eggIcon"}',
+          "title": "Egg Chair: UCSB Santa Rosa Main Lounge",
+          "position": '{"lat": "34.411267", "lng": "-119.845285"}'
+        },
+        {
+          "onClick": "this.onMarkerClick",
+          "icon": '{"eggIcon"}',
+          "title": "Egg Chair: Santa Catalina Fiest Room",
+          "position": '{"lat": "34.418319", "lng": "-119.867980"}'
+        },
+        {
+          "onClick": "this.onMarkerClick",
+          "icon": '{"eggIcon"}',
+          "title": "Egg Chair: Santa Cruz Lobby",
+          "position": '{"lat": "34.409913", "lng": "-119.843420"}'
+        }
+      ],
+
+    gardenMarkers: [
+      {
+        "onClick": "this.onMarkerClick",
+        "icon": '{"gardenIcon"}',
+        "title": "UCSB: Community Gardens",
+        "position": '{"lat": "34.420137", "lng": "-119.858604"}'
+      }
+    ]
     }
   }
 
@@ -37,7 +92,7 @@ export class MapContainer extends Component {
         // this.google.maps.TransitLayer().setMap(document.getElementById("map"));
         // document.getElementById("map").TransitLayer().getMap
         // this.state.traffic.setMap((document.getElementById("map")));
-        break;
+       break;
       case "transit" :         
         // this.state.bicycling.setMap(null);
         // this.state.traffic.setMap(null); 
@@ -57,37 +112,128 @@ export class MapContainer extends Component {
   }
 
   onMarkerClick = (props, marker, e) =>
-  // console.log("Clicked marker")
   this.setState({
     selectedPlace: props,
     activeMarker: marker,
     showingInfoWindow: true
   });
 
+  updateMarkers = function(props, marker, e){
+    switch(marker.eggbb){
+      case "egg":
+        if(this.state.checked == false){
+          this.setState({
+            eggMarkers: []
+          });
+        }
+        else{
+          this.renderEggMarkers()
+        }
+        break;
+      case "garden":
+        break;
+    }
+    // for( j = 0; j < markers.length; j++){
+    //   if(this.state.checked == false){
+    //     switch(category){
+    //       case "egg":
+    //         // marker.setVisible(false)
+    //         break;
+    //       case "garden":
+    //         marker.setVisible(true)
+    //         break;
+    //       case "grocery":
+    //         marker.setVisible(true)
+    //         break;
+    //     }
+    //   }
+    //   else{
+    //     switch(category){
+    //       case "egg":
+    //         marker.setVisible(true)
+    //         break;
+    //       case "garden":
+    //         marker.setVisible(true)
+    //         break;
+    //       case "grocery":
+    //         marker.setVisible(true)
+    //         break;
+    //     }
+    //   }
+    // }
+  }
+    
+  renderEggMarkers(){
+    return this.state.eggMarkers.map((location, i) => {
+      return <Marker
+        key = {i}
+        onClick = { this.onMarkerClick }
+        icon = {require('../data/eggchair.png')}
+        title = { location.title }
+        position = { JSON.parse(location.position) }
+         />
+    })
+  }
+
   render() {
+    const {state} = this
     const mapStyles = {
       width: '100%',
       height: '100%'
     };
-
+    const place = this.state.selectedPlace ? <div className="google_map_infobox"><h1>{state.selectedPlace.title}</h1></div>: null 
+    const eggIcon = require('../data/eggchair.png')
+    const gardenIcon = require('../data/garden.png')
+    const groceryIcon = require('../data/grocery.png')
+    
     return (
-      <div>Health and Wellness Map
-        {/* <div className="content">
-        <div className="container">
-          <section className="section">
-            <ul>
-              {this.state.list.map(item => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
-        </div>
-      </div> */}
+      <div >
+      <div>Health and Wellness Map</div>
+      <span class = 'nav'>Toggle on/off to see more locations</span>
+      <div class='nav'>
+        <BootstrapSwitchButton
+        checked={true}
+        onlabel='Show'
+        onstyle='outline-danger'
+        offlabel='Hide'
+        offstyle='outline-light'
+        style='w-24 mx-2'
+        class='align-right'
+        float = 'right'
+        onChange="updateMarkers()"
+        marker = 'egg'/><img class = "knop" src={eggIcon}></img></div>
       <div>
-      <Button color="secondary" onClick = {() => this.handleLayer("transit")}>Transit</Button>
+      <div class='nav'>
+        <BootstrapSwitchButton
+        checked={true}
+        onlabel='Show'
+        onstyle='outline-dark'
+        offlabel='Hide'
+        offstyle='outline-light'
+        style='w-24 mx-2 border'
+        class='align-right'
+        float = 'right'
+        onChange="updateMarkers()"
+        marker = 'garden'/><img class = "knop" src={groceryIcon}></img></div>
+      <div>
+      <div class='nav'>
+        <BootstrapSwitchButton
+        checked={true}
+        onlabel='Show'
+        onstyle='outline-success'
+        offlabel='Hide'
+        offstyle='outline-light'
+        style='w-24 mx-2'
+        class='align-right'
+        float = 'right'
+        onChange="updateMarkers()"
+        marker = 'egg'/><img class = "knop" src={gardenIcon}></img></div>
+      <div>
+      {/* <Button color="secondary" onClick = {() => this.handleLayer("transit")}>Transit</Button>
       <Button onClick = {() => this.handleLayer("traffic")}>Traffic</Button>
       <Button onClick = {() => this.handleLayer("bicycling")}>Bicycling</Button>
-      <Button onClick = {() => this.handleLayer("none")}>None</Button> 
+      <Button onClick = {() => this.handleLayer("none")}>None</Button>  */}
+      </div>
 
       <Map
       id={"map"}
@@ -95,73 +241,92 @@ export class MapContainer extends Component {
       zoom={15}
       style = {mapStyles}
       initialCenter={{lat: 34.4140, lng: -119.8489}}
-      onMapLoad = {this.handleMapLoad}
-      >
-      <Marker
+      onMapLoad = {this.handleMapLoad}>
+      {this.renderEggMarkers()}
+      {/* <Marker
         onClick={this.onMarkerClick}
+        icon={eggIcon}
         title={'Egg Chair: UCSB Library Mountainside'}
         name={'Egg Chair'}
-        position={{lat:34.413047, lng:-119.845567}}/>
+        position={{lat:34.413000, lng:-119.845689}}
+        filter={'egg'}/>
       <Marker
         onClick={this.onMarkerClick}
+        icon={eggIcon}
         title={'Egg Chair: CAPS'}
         name={'Egg Chair'}
-        position={{lat:34.413225, lng:-119.849233}}/>
+        position={{lat:34.413225, lng:-119.849233}}
+        filter={'egg'}/>
       <Marker
         onClick={this.onMarkerClick}
+        icon={eggIcon}
         title={'Egg Chair: UCSB Library Oceanside'}
         name={'Egg Chair'}
-        position={{lat:34.414297, lng:-119.845546}}/>
+        position={{lat:34.414297, lng:-119.845546}}
+        filter={'egg'}/>
       <Marker
         onClick={this.onMarkerClick}
         title={'Egg Chair: GSA Lounge'}
+        icon={eggIcon}
         name={'Egg Chair'}
-        position={{lat:34.411469, lng:-119.846670}}/>
+        position={{lat:34.411469, lng:-119.846670}}
+        filter={'egg'}/>
       <Marker
         onClick={this.onMarkerClick}
+        icon={eggIcon}
         title={'Egg Chair: Santa Rosa Main Lounge'}
         name={'Egg Chair'}
-        position={{lat:34.411267, lng:-119.845285}}/>
+        position={{lat:34.411267, lng:-119.845285}}
+        filter={'egg'}/>
       <Marker
         onClick={this.onMarkerClick}
+        icon={eggIcon}
         title={'Egg Chair: Santa Catalina Fiesta Room'}
         name={'Egg Chair'}
-        position={{lat:34.418319, lng:-119.867980}}/>
+        position={{lat:34.418319, lng:-119.867980}}
+        filter={'egg'}/>
       <Marker
         onClick={this.onMarkerClick}
+        icon={eggIcon}
         title={'Egg Chair: Santa Cruz Lobby'}
         name={'Egg Chair'}
-        position={{lat:34.409913, lng:-119.843420}}/>
+        position={{lat:34.409913, lng:-119.843420}}
+        filter={'egg'}/>
       <Marker
         onClick={this.onMarkerClick}
         title={'UCSB: Community Gardens'}
         name={'UCSB'}
-        position={{lat:34.420137, lng:-119.858604}}/>
+        icon={gardenIcon}
+        position={{lat:34.420137, lng:-119.858604}}
+        filter={'garden'}/> */}
       <Marker
         onClick={this.onMarkerClick}
         title={'Health and Wellness: Annex'}
         name={'HW'}
-        position={{lat:34.413425, lng:-119.848173}}/>
+        position={{lat:34.413425, lng:-119.848173}}
+        filter={'hw'}/>
       <Marker
         onClick={this.onMarkerClick}
+        icon={groceryIcon}
         title={'Food: Isla Vista Co-op'}
         name={'Food'}
-        position={{lat:34.411568, lng:-119.857600}}/>
+        position={{lat:34.411568, lng:-119.857600}}
+        filter={'food'}/>
       <Marker
         onClick={this.onMarkerClick}
-        title={'Food: Isla Vista Co-op'}
-        name={'Food'}
-        position={{lat:34.411568, lng:-119.857600}}/>
+        title={'Transfer Student Center: Library Mountainside'}
+        name={'Resource'}
+        position={{lat:34.413047, lng:-119.845567}}
+        filter={'resource'}/>
       <InfoWindow
         marker={this.state.activeMarker}
         visible={this.state.showingInfoWindow}>
-          <div>
-            <h1>{this.state.name}</h1>
-          </div>
+        {place}
       </InfoWindow>
       </Map>
-      </div>   
-      </div>  
+      </div> 
+      </div>
+      </div>
     )
   }
 }
@@ -169,5 +334,3 @@ export class MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyBZ44ehdGEJ74_EJsWhnBAPyHps2WRR3Hk'
 })(MapContainer)
-
-
