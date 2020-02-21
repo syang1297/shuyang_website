@@ -4,13 +4,13 @@
 .navbar {
   z-index: 10;
   width: 100%;
-  background: #fffdf9;
-  height: 7%;
+  background: #e6a07f;
+  height: 10%;
   margin: 0;
 }
 
 .navbarTitle{
-  font: 1.7em "Raleway", sans-serif;
+  font: 1.8em "Raleway", sans-serif;
   letter-spacing: 1.5px;
   color: #333;
   text-transform: uppercase;
@@ -19,9 +19,13 @@
 
 .navbarTitle:hover {
   cursor: pointer;
-  color: #01579B !important;
+  color: rgb(129, 13, 13) !important;
 }
 
+.dropdown-menu {
+  color: rgb(129, 13, 13) !important;
+
+}
 
 .link {
   text-transform: uppercase;
@@ -30,7 +34,7 @@
 }
 .link:hover {
   cursor: pointer;
-  color: #01579B !important;
+  color: rgba(170, 36, 18, 0.849) !important;
 }
 
 .navImage{

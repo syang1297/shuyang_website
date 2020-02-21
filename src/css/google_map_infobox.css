@@ -1,0 +1,10 @@
+.google_map_infobox
+{
+    background: rgba(196, 192, 192, 0.933);
+    /* padding: 1em; */
+    text-align: center;
+    font-size: 2px;
+    /* box-shadow: 3px 3px 10px rgba(0,0,0,0.6); */
+    border: 1px solid #666;
+    /* font-family: "berlin"; */
+}

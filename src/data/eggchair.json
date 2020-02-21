@@ -1,0 +1,107 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "EGG_ID": 0,
+          "NAME": "Egg Chair",
+          "PICTURE": null,
+          "DESCRIPT": "egg chair description",
+          "LOCATION": "UCSB Library MountainSide"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [34.413047, -119.845567]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "EGG_ID": 0,
+          "NAME": "Egg Chair",
+          "PICTURE": null,
+          "DESCRIPT": "egg chair description",
+          "LOCATION": "CAPS"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [34.413225, -119.849233]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "EGG_ID": 0,
+          "NAME": "Egg Chair",
+          "PICTURE": null,
+          "DESCRIPT": "egg chair description",
+          "LOCATION": "UCSB Library Ocean"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [34.414297, -119.845546]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "EGG_ID": 0,
+          "NAME": "Egg Chair",
+          "PICTURE": null,
+          "DESCRIPT": "egg chair description",
+          "LOCATION": "GSA Lounge"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [34.411469, -119.846670]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "EGG_ID": 0,
+          "NAME": "Egg Chair",
+          "PICTURE": null,
+          "DESCRIPT": "egg chair description",
+          "LOCATION": "Santa Rosa Main Lounge"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [34.411267, -119.845285]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "EGG_ID": 0,
+          "NAME": "Egg Chair",
+          "PICTURE": null,
+          "DESCRIPT": "egg chair description",
+          "LOCATION": "Santa Catalina Fiesta Room"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [34.418319, -119.867980]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "EGG_ID": 0,
+          "NAME": "Egg Chair",
+          "PICTURE": null,
+          "DESCRIPT": "egg chair description",
+          "LOCATION": "Santa Cruz Lobby"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [34.409913, -119.843420]
+        }
+      }
+    ]
+  }
